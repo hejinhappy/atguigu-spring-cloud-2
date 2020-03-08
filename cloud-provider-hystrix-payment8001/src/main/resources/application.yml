@@ -1,9 +1,9 @@
 server:
-  port: 80
+  port: 8001
 
 spring:
   application:
-    name: cloud-order-openfeign-service
+    name: cloud-payment-hystrix-service
 
 eureka:
   client:
@@ -14,16 +14,3 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
-
-#基于feignclient
-feign:
-  client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 5000
-        loggerLevel: FULL #日志级别
-
-logging:
-  level:
-    com.atguigu.springcloud.feginservice.PaymentService: debug
