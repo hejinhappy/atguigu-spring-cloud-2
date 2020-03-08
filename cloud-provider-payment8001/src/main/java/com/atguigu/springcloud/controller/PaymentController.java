@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 请填写类的描述
@@ -64,6 +65,17 @@ public class PaymentController {
             log.info("ServiceId：{}\tHost：{}\tPort：{}\tUri：{}", instance.getServiceId(), instance.getHost(), instance.getPort(), instance.getUri());
         }
         return discoveryClient;
+    }
+
+    @GetMapping(value = "payment/openfeign/timeout")
+    public String getPaymentOpenfeignTimeout() {
+        //opfeign默认超时1秒，模拟超时任务
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
     }
 
 }
